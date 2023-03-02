@@ -1,0 +1,24 @@
+{
+  "id": "com.homey.zoneminder",
+  "version": "1.0.0",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "brandColor": "#03a9f4",
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Zoneminder"
+  },
+  "description": {
+    "en": "Zoneminder events handler. As ZM API does not return active alarms. The trigger will query the ended alarms over the last x seconds that were not reported yet"
+  },
+  "category": [
+    "security"
+  ],
+  "permissions": [],
+  "author": {
+    "name": "Maxime Salecroix",
+    "email": "maxime.salecroix@gmail.com"
+  }
+}

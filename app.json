@@ -1,0 +1,175 @@
+{
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "com.homey.zoneminder",
+  "version": "1.0.0",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "brandColor": "#03a9f4",
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Zoneminder"
+  },
+  "description": {
+    "en": "Zoneminder events handler. As ZM API does not return active alarms. The trigger will query the ended alarms over the last x seconds that were not reported yet"
+  },
+  "category": [
+    "security"
+  ],
+  "permissions": [],
+  "author": {
+    "name": "Maxime Salecroix",
+    "email": "maxime.salecroix@gmail.com"
+  },
+  "flow": {
+    "triggers": [
+      {
+        "title": {
+          "en": "Alarm is triggered"
+        },
+        "tokens": [
+          {
+            "type": "number",
+            "name": "monitorId",
+            "title": {
+              "en": "MonitorId"
+            },
+            "example": {
+              "en": "ID of the monitor that received an alarm"
+            }
+          },
+          {
+            "type": "string",
+            "name": "name",
+            "title": {
+              "en": "Event Name"
+            },
+            "example": {
+              "en": "Event name that received an alarm"
+            }
+          },
+          {
+            "type": "string",
+            "name": "cause",
+            "title": {
+              "en": "Cause"
+            },
+            "example": {
+              "en": "Cause of the alarm"
+            }
+          }
+        ],
+        "id": "alarm-is-triggered"
+      }
+    ],
+    "actions": [
+      {
+        "title": {
+          "en": "Change monitor function"
+        },
+        "titleFormatted": {
+          "en": "Change monitor [[monitorId]] to [[newFunction]]"
+        },
+        "hint": {
+          "en": "Switch monitor function"
+        },
+        "args": [
+          {
+            "type": "number",
+            "name": "monitorId",
+            "title": {
+              "en": "MonitorId"
+            },
+            "placeholder": {
+              "en": "1"
+            },
+            "min": 0,
+            "max": 999,
+            "step": 1
+          },
+          {
+            "type": "dropdown",
+            "name": "newFunction",
+            "title": {
+              "en": "Function"
+            },
+            "values": [
+              {
+                "id": "None",
+                "label": {
+                  "en": "None"
+                }
+              },
+              {
+                "id": "Monitor",
+                "label": {
+                  "en": "Monitor"
+                }
+              },
+              {
+                "id": "Modect",
+                "label": {
+                  "en": "Modect"
+                }
+              },
+              {
+                "id": "Record",
+                "label": {
+                  "en": "Record"
+                }
+              },
+              {
+                "id": "Mocord",
+                "label": {
+                  "en": "Mocord"
+                }
+              },
+              {
+                "id": "Nodect",
+                "label": {
+                  "en": "Nodect"
+                }
+              }
+            ]
+          }
+        ],
+        "id": "change-monitor-function"
+      },
+      {
+        "title": {
+          "en": "Enable monitor"
+        },
+        "titleFormatted": {
+          "en": "[[enabled]] monitor [[monitorId]]"
+        },
+        "hint": {
+          "en": "Enable / disable monitor"
+        },
+        "args": [
+          {
+            "type": "checkbox",
+            "name": "enabled",
+            "title": {
+              "en": "Enable monitor ?"
+            }
+          },
+          {
+            "type": "number",
+            "name": "monitorId",
+            "title": {
+              "en": "MonitorId"
+            },
+            "placeholder": {
+              "en": "1"
+            },
+            "min": 0,
+            "max": 999,
+            "step": 1
+          }
+        ],
+        "id": "enable-monitor"
+      }
+    ]
+  }
+}

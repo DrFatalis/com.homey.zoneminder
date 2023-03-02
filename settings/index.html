@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- The '/homey.js' script must be included in your settings view to work -->
+    <script
+      type="text/javascript"
+      src="/homey.js"
+      data-origin="settings"
+    ></script>
+  </head>
+  <body>
+    <header class="homey-header">
+      <h1 class="homey-title" data-i18n="settings.title">
+        <!-- This will be filled with the translated string with key 'settings.title'. -->
+      </h1>
+      <p class="homey-subtitle" data-i18n="settings.description">
+        <!-- This field will also be translated -->
+      </p>
+    </header>
+
+    <fieldset class="homey-form-fieldset">
+      <legend class="homey-form-legend">Application Settings</legend>
+
+      <div class="homey-form-group">
+        <label class="homey-form-label" for="zmServerUrl" data-i18n="settings.zmServerUrl"></label>
+        <input class="homey-form-input" id="zmServerUrl" type="text" value="" />
+        <label class="homey-form-label" id="zmServerUrlResult"> </label>
+      </div>
+      <div class="homey-form-group">
+        <label class="homey-form-label" for="zmUser" data-i18n="settings.zmUser"></label>
+        <input class="homey-form-input" id="zmUser" type="text" value="" />
+      </div>
+      <div class="homey-form-group">
+        <label class="homey-form-label" for="zmPassword" data-i18n="settings.zmPassword"></label>
+        <input class="homey-form-input" id="zmPassword" type="password" value="" />
+      </div>
+      <div class="homey-form-group">
+        <label class="homey-form-label" for="zmAlarmsRefreshTime" data-i18n="settings.zmAlarmsRefreshTime"></label>
+        <input class="homey-form-input" id="zmAlarmsRefreshTime" type="number" min="0" max="90" value="" />
+      </div>
+      <div class="homey-form-group">
+        <label class="homey-form-label" for="zmAlarmsMaximumDuration" data-i18n="settings.zmAlarmsMaximumDuration"></label>
+        <input class="homey-form-input" id="zmAlarmsMaximumDuration" type="number" min="0" max="600" value="" />
+      </div>
+    </fieldset>
+    <button id="save" class="homey-button-primary-full">Save changes</button>
+
+    <p class="homey-subtitle" data-i18n="settings.restart"></p>
+
+    <script type="text/javascript">
+      // a method named 'onHomeyReady' must be present in your code
+      function onHomeyReady(Homey) {
+        // Tell Homey we're ready to be displayed
+        Homey.ready();
+
+        var zmServerUrlElement = document.getElementById("zmServerUrl");
+        var zmUserElement = document.getElementById("zmUser");
+        var zmPasswordElement = document.getElementById("zmPassword");
+        var zmAlarmsRefreshTimeElement = document.getElementById("zmAlarmsRefreshTime");
+        var zmAlarmsMaximumDurationElement = document.getElementById("zmAlarmsMaximumDuration");
+        var zmServerUrlResultElement = document.getElementById("zmServerUrlResult");
+        var saveElement = document.getElementById("save");
+
+        window.addEventListener('fetch', function (event) {
+            console.log("fetch add event listener");
+        });
+
+        // Event listener for server url change
+        zmServerUrlElement.addEventListener('input', (event) => {
+            try {
+              zmServerUrlResultElement.innerHTML = "Checking...";
+              zmServerUrlResultElement.style.color = "#000000";
+
+              fetch(new URL(zmServerUrlElement.value), {
+                  method: "GET",
+                  mode: 'no-cors',
+                  headers: {
+                    'Access-Control-Allow-Origin': '*'
+                  },
+                  timeout: 5000
+                })
+                .then((response) => console.log(response))
+                .then((data) => {
+                  console.log(data);
+                  zmServerUrlResultElement.innerHTML = "Checking... URL is accessible";
+                  zmServerUrlResultElement.style.color = "#00cc00";
+                })
+                .catch((error) => {
+                  console.log("https fail", error);
+                  zmServerUrlResultElement.innerHTML = "Checking... URL is accessible";
+                  zmServerUrlResultElement.style.color = "#FF0000";
+                });
+
+            }
+            catch (error) {
+              zmServerUrlResultElement.innerHTML = "URL is not valid";
+              zmServerUrlResultElement.style.color = "#ff0000";
+            }
+          });
+
+        Homey.get("zmServerUrl", function (err, setting) {
+          if (err) return Homey.alert(err);
+          zmServerUrlElement.value = setting;
+          if(setting != ""){
+            zmServerUrlElement.dispatchEvent(new Event('input'));
+          }
+        });
+
+        Homey.get("zmUser", function (err, setting) {
+          if (err) return Homey.alert(err);
+          zmUserElement.value = setting;
+        });
+
+        Homey.get("zmPassword", function (err, setting) {
+          if (err) return Homey.alert(err);
+          zmPasswordElement.value = setting;
+        });
+
+        Homey.get("zmAlarmsRefreshTime", function (err, setting) {
+          if (err) return Homey.alert(err);
+          zmAlarmsRefreshTimeElement.value = setting;
+        });
+
+        Homey.get("zmAlarmsMaximumDuration", function (err, setting) {
+          if (err) return Homey.alert(err);
+          zmAlarmsMaximumDurationElement.value = setting;
+        });
+
+        saveElement.addEventListener("click", function (e) {
+          Homey.set("zmServerUrl", zmServerUrlElement.value, function (err) {
+            if (err) return Homey.alert(err);
+          });
+          Homey.set("zmUser", zmUserElement.value, function (err) {
+            if (err) return Homey.alert(err);
+          });
+          Homey.set("zmPassword", zmPasswordElement.value, function (err) {
+            if (err) return Homey.alert(err);
+          });
+          Homey.set("zmAlarmsRefreshTime", zmAlarmsRefreshTimeElement.value, function (err) {
+            if (err) return Homey.alert(err);
+          });
+          Homey.set("zmAlarmsMaximumDuration", zmAlarmsMaximumDurationElement.value, function (err) {
+            if (err) return Homey.alert(err);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+{
+    "settings": {
+      "title": "Zoneminder Settings",
+      "description": "Please configure the application",
+      "zmServerUrl": "Zoneminder server URL",
+      "zmUser": "Zoneminder user for homey",
+      "zmPassword": "Above user password",
+      "zmAlarmsRefreshTime": "Alarms refresh time in sec. (0: Disabled)",
+      "zmAlarmsMaximumDuration": "Usual maximum duration of an alarm",
+      "restart": "Please restart app after parameter change"
+    }
+  }

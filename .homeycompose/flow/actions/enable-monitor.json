@@ -1,0 +1,29 @@
+{
+  "title": {
+    "en": "Enable monitor"
+  },
+  "titleFormatted": {
+    "en": "[[enabled]] monitor [[monitorId]]"
+  },
+  "hint": {
+    "en": "Enable / disable monitor"
+  },
+  "args": [
+    {
+      "type": "checkbox",
+      "name": "enabled",
+      "title": { "en": "Enable monitor ?" }
+    },
+    {
+      "type": "number",
+      "name": "monitorId",
+      "title": { "en": "MonitorId" },
+      "placeholder": {
+        "en": "1"
+      },
+      "min": 0,
+      "max": 999,
+      "step": 1
+    }
+  ]
+}

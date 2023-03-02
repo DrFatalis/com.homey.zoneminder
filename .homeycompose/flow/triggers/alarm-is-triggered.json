@@ -1,0 +1,37 @@
+{
+  "title": {
+    "en": "Alarm is triggered"
+  },
+  "tokens": [
+    {
+      "type": "number",
+      "name": "monitorId",
+      "title": {
+        "en": "MonitorId"
+      },
+      "example": {
+        "en": "ID of the monitor that received an alarm"
+      }
+    },
+    {
+      "type": "string",
+      "name": "name",
+      "title": {
+        "en": "Event Name"
+      },
+      "example": {
+        "en": "Event name that received an alarm"
+      }
+    },
+    {
+      "type": "string",
+      "name": "cause",
+      "title": {
+        "en": "Cause"
+      },
+      "example": {
+        "en": "Cause of the alarm"
+      }
+    }
+  ]
+}

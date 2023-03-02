@@ -1,0 +1,37 @@
+{
+  "title": {
+    "en": "Change monitor function"
+  },
+  "titleFormatted": {
+    "en": "Change monitor [[monitorId]] to [[newFunction]]"
+  },
+  "hint": {
+    "en": "Switch monitor function"
+  },
+  "args": [
+    {
+      "type": "number",
+      "name": "monitorId",
+      "title": { "en": "MonitorId" },
+      "placeholder": {
+        "en": "1"
+      },
+      "min": 0,
+      "max": 999,
+      "step": 1
+    },
+    {
+      "type": "dropdown",
+      "name": "newFunction",
+      "title": { "en": "Function" },
+      "values": [
+        { "id": "None", "label": { "en": "None" } },
+        { "id": "Monitor", "label": { "en": "Monitor" } },
+        { "id": "Modect", "label": { "en": "Modect" } },
+        { "id": "Record", "label": { "en": "Record" } },
+        { "id": "Mocord", "label": { "en": "Mocord" } },
+        { "id": "Nodect", "label": { "en": "Nodect" } }
+      ]
+    }
+  ]
+}
