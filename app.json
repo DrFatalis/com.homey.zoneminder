@@ -17,6 +17,11 @@
   "category": [
     "security"
   ],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
   "permissions": [],
   "author": {
     "name": "Maxime Salecroix",
